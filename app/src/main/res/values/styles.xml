@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<style name="CustomDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="colorAccent">#009688</item> <!-- Button highlight -->
+    <item name="android:background">#fefefe</item>
+    <item name="android:textColorPrimary">#212121</item>
+    <item name="android:windowMinWidthMajor">90%</item>
+</style>
+</resources>

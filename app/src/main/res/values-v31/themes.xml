@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<resources>-->
+
+<!--    <style name="Theme.TSAutomate.Launch" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
+<!--        &lt;!&ndash; Set the background (you can change to your logo later) &ndash;&gt;-->
+<!--        <item name="android:windowBackground">@drawable/splash_background</item>-->
+<!--        <item name="android:windowNoTitle">true</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+<!--        &lt;!&ndash; Prevent default icon animation &ndash;&gt;-->
+<!--        <item name="android:windowSplashScreenAnimatedIcon">@drawable/smartagent</item>-->
+<!--        <item name="android:windowSplashScreenBackground">@android:color/white</item>-->
+<!--    </style>-->
+<!--</resources>-->
+
+<resources>
+<style name="Theme.TSAutomate.Launch" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Prevent icon animation -->
+    <item name="android:windowSplashScreenAnimatedIcon">@null</item>
+
+    <!-- Show your actual splash screen -->
+    <item name="android:windowSplashScreenBackground">@drawable/splash_background</item>
+
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowFullscreen">true</item>
+</style>
+</resources>

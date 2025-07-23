@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--MASTER-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBEFFF"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+<!-- TOP MAIN-->
+
+
+        <!-- Header Title -->
+
+        <!-- Subtext -->
+
+        <TextView
+            android:id="@+id/hwehistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="26dp"
+            android:text="Transaction History"
+            android:textColor="#1E36B8"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toTopOf="@+id/head"
+            app:layout_constraintEnd_toStartOf="@+id/advert"
+            app:layout_constraintStart_toEndOf="@+id/help"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+                android:id="@+id/help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="13dp"
+                android:text="Need Help?"
+            android:clickable="true"
+            android:focusable="true"
+                android:textColor="#FF0000"
+                app:layout_constraintBottom_toTopOf="@+id/head"
+                app:layout_constraintEnd_toStartOf="@+id/history"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/advert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="63dp"
+                android:layout_marginBottom="10dp"
+                android:text="Advertise"
+                android:textColor="#0FA815"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toTopOf="@+id/head"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/history"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/head"
+            android:layout_width="326dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginBottom="4dp"
+            android:text="TS-AUTOMATE from TSBF GHANA"
+            android:textAlignment="viewEnd"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/notice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Logo -->
+        <TextView
+            android:id="@+id/notice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="4dp"
+            android:text="(This app is for MoMo Business Operators)"
+            android:textAlignment="viewEnd"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/head" />
+
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/tsbf_logo"
+            android:layout_marginTop="12dp"
+            android:contentDescription="TSBF Logo"
+            android:scaleType="fitCenter"
+            app:layout_constraintTop_toBottomOf="@id/notice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- SIM Selection Radio Buttons -->
+        <RadioGroup
+            android:id="@+id/simGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/logoImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp">
+
+            <RadioButton
+                android:id="@+id/sim1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SIM 1"/>
+
+            <RadioButton
+                android:id="@+id/sim2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SIM 2"
+                android:layout_marginStart="16dp"/>
+        </RadioGroup>
+
+        <!-- Phone Input -->
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="text"
+            android:maxLength="10"
+            android:padding="12dp"
+            android:backgroundTint="#512DA8"
+            app:layout_constraintTop_toBottomOf="@id/simGroup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/amountInput"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"/>
+
+        <!-- Amount Input -->
+        <EditText
+            android:id="@+id/amountInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Amount"
+            android:inputType="numberDecimal"
+            android:padding="12dp"
+            android:backgroundTint="#512DA8"
+            app:layout_constraintTop_toTopOf="@id/phoneNumber"
+            app:layout_constraintStart_toEndOf="@id/phoneNumber"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"/>
+
+        <!-- Button Grid Layout -->
+<!--        <Button-->
+<!--            android:id="@+id/stepConfirmButton"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:text="Continue"-->
+<!--            android:backgroundTint="#512DA8"-->
+<!--            android:drawableStart="@drawable/ic_balance"-->
+<!--            android:drawablePadding="8dp"-->
+<!--            android:textColor="#FFFFFF" />-->
+
+        <!-- Footer -->
+        <!-- Footer -->
+
+        <GridLayout
+            android:id="@+id/actionButtons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:alignmentMode="alignMargins"
+            android:columnCount="2"
+            android:useDefaultMargins="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/amountInput">
+
+            <Button
+                android:id="@+id/checkbalance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#512DA8"
+                android:drawableStart="@drawable/ic_balance"
+                android:drawablePadding="8dp"
+                android:text="CHECK BALANCE"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/rounded_button"/>
+
+            <Button
+                android:id="@+id/cashin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#512DA8"
+                android:drawableStart="@drawable/ic_cashin"
+                android:drawablePadding="8dp"
+                android:text="CASH IN"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/rounded_button"/>
+
+            <Button
+                android:id="@+id/cashout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#512DA8"
+                android:drawableStart="@drawable/ic_cashout"
+                android:drawablePadding="8dp"
+                android:text="CASH OUT"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/rounded_button"/>
+
+            <Button
+                android:id="@+id/paytoagent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#512DA8"
+                android:drawableStart="@drawable/ic_agent"
+                android:drawablePadding="8dp"
+                android:text="PAY TO AGENT"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/rounded_button"/>
+
+            <Button
+                android:id="@+id/paytomerchant"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#512DA8"
+                android:drawableStart="@drawable/ic_merchant"
+                android:drawablePadding="3dp"
+                android:textSize="13sp"
+                android:text="PAY TO MERCHANT"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/rounded_button"/>
+
+            <Button
+                android:id="@+id/customussd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#512DA8"
+                android:drawableStart="@drawable/ic_ussd"
+                android:drawablePadding="8dp"
+                android:text="CUSTOM USSD"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/rounded_button"/>
+
+            <Button
+                android:id="@+id/sellairtime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#512DA8"
+                android:drawableStart="@drawable/ic_airtime"
+                android:drawablePadding="8dp"
+                android:text="SELL AIRTIME"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/rounded_button"/>
+
+            <Button
+                android:id="@+id/selldata"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="#512DA8"
+                android:drawableStart="@drawable/newg"
+                android:drawablePadding="8dp"
+                android:text="SELL DATA"
+                android:textColor="#FFFFFF" />
+        </GridLayout>
+
+        <TextView
+            android:id="@+id/footer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="Developed By: SUPERJCYBS"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actionButtons" />
+
+<!--        <Button-->
+<!--            android:id="@+id/viewHistory"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_marginTop="164dp"-->
+<!--            android:backgroundTint="#512DA8"-->
+<!--            android:drawableStart="@drawable/ic_balance"-->
+<!--            android:drawablePadding="8dp"-->
+<!--            android:text="My Transactions"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:layout_editor_absoluteX="285dp" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
