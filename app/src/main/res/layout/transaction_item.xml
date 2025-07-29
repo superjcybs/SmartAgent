@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:layout_marginBottom="8dp"
+    android:elevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tnx_phone"
+            android:text="0597098435"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tnx_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cash In"
+            android:textAlignment="textEnd"
+            android:textSize="14sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/tnx_network"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MTN"
+        android:layout_weight="1"
+        android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tnx_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="GHS 1.0"
+            android:textAlignment="textEnd"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/tnx_date"
+        android:text="29-May-2025 09:54 PM"
+        android:textSize="14sp"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tnx_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="successful"
+        android:textAlignment="textEnd"
+        android:textColor="#00AA00"
+        android:textSize="14sp" />
+</LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center">
+
+        <Button
+            android:id="@+id/btn_mark_successful"
+            android:text="Mark successful"
+            android:layout_marginEnd="8dp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#00AA00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_mark_unsuccessful"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF0000"
+            android:text="Mark unsuccessful"
+            android:textAlignment="viewEnd"
+            android:textColor="#FFF" />
+    </LinearLayout>
+
+</LinearLayout>

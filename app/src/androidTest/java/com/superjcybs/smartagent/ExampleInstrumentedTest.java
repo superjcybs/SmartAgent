@@ -1,4 +1,4 @@
-package com.example.smartagent;
+package com.superjcybs.smartagent;
 
 import android.content.Context;
 

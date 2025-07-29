@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "389483509618",
+    "project_id": "smartagent-app",
+    "storage_bucket": "smartagent-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389483509618:android:12190f342b261892fc0feb",
+        "android_client_info": {
+          "package_name": "com.superjcybs.smartagent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389483509618-ojn2unauce08i5noi2af7nrk17jfdf3n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.superjcybs.smartagent",
+            "certificate_hash": "6c295576e1d91147716eb45a572f3ee82eb67400"
+          }
+        },
+        {
+          "client_id": "389483509618-rfv65a1tbt689qvuena8hevskdtt0rfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzNCibIioKNzhzKpo-dwSkc0xy2QMkPzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389483509618-rfv65a1tbt689qvuena8hevskdtt0rfm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

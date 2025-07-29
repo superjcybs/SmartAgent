@@ -1,4 +1,4 @@
-package com.example.smartagent;
+package com.superjcybs.smartagent;
 
 import android.Manifest;
 import android.content.Intent;
@@ -16,23 +16,28 @@ import android.telephony.TelephonyManager;
 import android.telephony.TelephonyManager.UssdResponseCallback;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Calendar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import android.text.InputFilter;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    GoogleSignInClient mGoogleSignInClient;
     private static final int REQUEST_CALL_PERMISSION = 1;
     private static final String TAG = "USSD_APP";
 
@@ -84,17 +89,35 @@ public class MainActivity extends AppCompatActivity {
         prefs.edit().clear().apply();
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-checkAndRequestPermissions();
+        checkAndRequestPermissions();
         if (!isAccessibilityServiceEnabled(UssdAccessibilityService.class)) {
             promptEnableAccessibility();
         }
 
+        TextView greetingText = findViewById(R.id.greetingText);
+
+        SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
+        String email = prefs.getString("user_email", "Guest");
+
+        String greeting;
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        if (hour < 12) {
+            greeting = "Good morning";
+        } else if (hour < 18) {
+            greeting = "Good afternoon";
+        } else {
+            greeting = "Good evening";
+        }
+
+        greetingText.setText(greeting + " " + email);
+
+    // collect user inputs
         phoneInput = findViewById(R.id.phoneNumber);
         amountInput = findViewById(R.id.amountInput);
         simGroup = findViewById(R.id.simGroup);
@@ -115,6 +138,8 @@ checkAndRequestPermissions();
             showHelpDialog();
         });
 
+
+
         TextView historyView = findViewById(R.id.hwehistory);
         historyView.setOnClickListener(v -> {
             startActivity(new Intent(this, TransactionHistoryActivity.class));
@@ -125,10 +150,10 @@ checkAndRequestPermissions();
             startActivity(new Intent(this, AdvertListActivity.class));
         });
 
-//        Button historyButton = findViewById(R.id.history);
-//        historyButton.setOnClickListener(v -> {
-//            startActivity(new Intent(this, TransactionHistoryActivity.class));
-//        });
+        Button AdminButton = findViewById(R.id.adminPortal);
+        AdminButton.setOnClickListener(v -> {
+            startActivity(new Intent(this, AdminDashboardActivity.class));
+        });
 
         findViewById(R.id.checkbalance).setOnClickListener(v -> {
             if (collectTransactionInputs("checkbalance")) {
@@ -180,9 +205,29 @@ checkAndRequestPermissions();
             }
             sendUssdFallback("*138#");
         });
+        findViewById(R.id.buyafa).setOnClickListener(v -> {
+            if (collectTransactionInputs("buyafa")) {
+                String simSelection = getSimSelection();
+                triggerUssdWithSim("*1848#", simSelection);
+            }
+        });
+//        findViewById(R.id.customussd).setOnClickListener(v -> {
+//            showCustomUssdDialog();
+//        });
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        findViewById(R.id.customussd).setOnClickListener(v -> {
-            showCustomUssdDialog();
+        findViewById(R.id.btnLogout).setOnClickListener(v -> {
+            mGoogleSignInClient.signOut().addOnCompleteListener(this, task -> {
+                // Clear local SharedPreferences
+                getSharedPreferences("user_data", MODE_PRIVATE).edit().clear().apply();
+                Toast.makeText(this, "Signed out", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
+            });
         });
     }
 

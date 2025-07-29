@@ -15,17 +15,16 @@
         android:label="Smart Agent"
         tools:replace="android:label"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-<!--        <activity android:name=".LoginActivity"-->
-<!--            android:exported="true"/>-->
-
         <activity
             android:name=".LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login" />
+        <activity android:name=".AdminDashboardActivity" />
         <activity android:name=".SubscriptionActivity" />
-
-        <!--        <activity android:name=".MainActivity" />-->
-        <activity android:name=".SplashActivity"
+        <activity android:name=".TransactionHistoryActivity" />
+        <activity android:name=".AdvertListActivity" />
+        <activity android:name=".SplashActivity"/>
+        <activity android:name=".MainActivity"
             android:theme="@style/Theme.TSAutomate.Launch"
             android:exported="true">
             <intent-filter>

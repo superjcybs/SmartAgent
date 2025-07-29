@@ -1,4 +1,4 @@
-package com.example.smartagent;
+package com.superjcybs.smartagent;
 
 import android.accessibilityservice.AccessibilityService;
 import android.content.SharedPreferences;
@@ -7,7 +7,11 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Toast;
 import android.util.Log;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class UssdAccessibilityService extends AccessibilityService {
         private static final String TAG = "USSD_SERVICE";
@@ -73,11 +77,26 @@ public class UssdAccessibilityService extends AccessibilityService {
                     performInput(amount);
                     updateStep(5);
 
-                    // ✅ Log transaction after amount is entered
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy hh:mm a", Locale.getDefault());
+                    String timestamp = sdf.format(new Date());
+
+                    TransactionItem transaction = new TransactionItem(
+                            phone,
+                            "MTN",
+                            timestamp,
+                            "GH¢ " + amount,
+                            "processing",
+                            "Cash In"
+                    );
+
                     prefs = getSharedPreferences("transaction_log", MODE_PRIVATE);
-                    String label = "Cash-In to " + phone + " - GH₵" + amount;
-                    TransactionHistoryActivity.saveTransaction(prefs, label);
-                    Log.d("USSD_SERVICE", "Transaction logged: " + label);
+                    TransactionHistoryActivity.saveTransaction(prefs, transaction);
+
+                    // ✅ Log transaction after amount is entered
+//                    prefs = getSharedPreferences("transaction_log", MODE_PRIVATE);
+//                    String label = "Cash-In to " + phone + " - GH₵" + amount;
+//                    TransactionHistoryActivity.saveTransaction(prefs, label);
+//                    Log.d("USSD_SERVICE", "Transaction logged: " + label);
 
                     // Reset shared preferences after cash-in flow is done
                     resetTransactionContext();
@@ -102,23 +121,25 @@ public class UssdAccessibilityService extends AccessibilityService {
                 } else if ((text.toLowerCase().contains("repeat mobile number")) && step == 3) {
                     performInput(phone);
                     updateStep(4);
-                } else if ((text.toLowerCase().contains("enter amount")) && step == 4) {
+                } else if ((text.toLowerCase().contains("amount")) && step == 4) {
                     performInput(amount);
                     updateStep(5);
 
                     // ✅ Log transaction after amount is entered
-                    prefs = getSharedPreferences("transaction_log", MODE_PRIVATE);
-                    String label = "Cash-Out to " + phone + " - GH₵" + amount;
-                    TransactionHistoryActivity.saveTransaction(prefs, label);
-                    Log.d("USSD_SERVICE", "Transaction logged: " + label);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy hh:mm a", Locale.getDefault());
+                    String timestamp = sdf.format(new Date());
 
+                    TransactionItem transaction = new TransactionItem(
+                            phone,
+                            "MTN",
+                            timestamp,
+                            "GH¢ " + amount,
+                            "processing",
+                            "Cash Out"
+                    );
 
                     // Reset shared preferences after cash-in flow is done
                     resetTransactionContext();
-
-                    updateStep(0);
-                } else if (text.contains("Confirm") && step == 4) {
-                    Toast.makeText(this, "Ready to confirm. Please approve manually.", Toast.LENGTH_LONG).show();
                     updateStep(0);
                 }
             }
@@ -141,21 +162,24 @@ public class UssdAccessibilityService extends AccessibilityService {
                     updateStep(5);
 
                     // ✅ Log transaction after amount is entered
-                    prefs = getSharedPreferences("transaction_log", MODE_PRIVATE);
-                    String label = "Pay-To-Agent" + phone + " - GH₵" + amount;
-                    TransactionHistoryActivity.saveTransaction(prefs, label);
-                    Log.d("USSD_SERVICE", "Transaction logged: " + label);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy hh:mm a", Locale.getDefault());
+                    String timestamp = sdf.format(new Date());
+
+                    TransactionItem transaction = new TransactionItem(
+                            phone,
+                            "MTN",
+                            timestamp,
+                            "GH¢ " + amount,
+                            "processing",
+                            "Pay-To-Agent"
+                    );
 
                     // Reset shared preferences after cash-in flow is done
                     resetTransactionContext();
 
                     updateStep(0);
-                } else if (text.contains("Confirm") && step == 5) {
-                    Toast.makeText(this, "Ready to confirm. Please approve manually.", Toast.LENGTH_LONG).show();
-                    updateStep(0);
                 }
             }
-
             else if (flowType.equals("paytomerchant")) {
                 if (text.contains("Pay To") && step == 0) {
                     performInput("1");
@@ -174,14 +198,19 @@ public class UssdAccessibilityService extends AccessibilityService {
                         updateStep(5);
 
                     // ✅ Log transaction after amount is entered
-                    prefs = getSharedPreferences("transaction_log", MODE_PRIVATE);
-                    String label = "Pay-To-Merchant " + phone + " - GH₵" + amount;
-                    TransactionHistoryActivity.saveTransaction(prefs, label);
-                    Log.d("USSD_SERVICE", "Transaction logged: " + label);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy hh:mm a", Locale.getDefault());
+                    String timestamp = sdf.format(new Date());
 
+                    TransactionItem transaction = new TransactionItem(
+                            phone,
+                            "MTN",
+                            timestamp,
+                            "GH¢ " + amount,
+                            "processing",
+                            "Pay-To-Merchant"
+                    );
                     // Reset shared preferences after cash-in flow is done
                     resetTransactionContext();
-
                     updateStep(0);
                 }
             }
@@ -203,14 +232,19 @@ public class UssdAccessibilityService extends AccessibilityService {
 //                    updateStep(5);
 
                     // ✅ Log transaction after amount is entered
-                    prefs = getSharedPreferences("transaction_log", MODE_PRIVATE);
-                    String label = "Airtime-sale " + phone + " - GH₵" + amount;
-                    TransactionHistoryActivity.saveTransaction(prefs, label);
-                    Log.d("USSD_SERVICE", "Transaction logged: " + label);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy hh:mm a", Locale.getDefault());
+                    String timestamp = sdf.format(new Date());
 
+                    TransactionItem transaction = new TransactionItem(
+                            phone,
+                            "MTN",
+                            timestamp,
+                            "GH¢ " + amount,
+                            "processing",
+                            "Airtime Sale"
+                    );
                     // Reset shared preferences after cash-in flow is done
                     resetTransactionContext();
-
                     updateStep(0);
                 }
             }
@@ -232,19 +266,62 @@ public class UssdAccessibilityService extends AccessibilityService {
 //                    updateStep(5);
 
                     // ✅ Log transaction after amount is entered
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy hh:mm a", Locale.getDefault());
+                    String timestamp = sdf.format(new Date());
+
+                    TransactionItem transaction = new TransactionItem(
+                            phone,
+                            "MTN",
+                            timestamp,
+                            "GH¢ " + amount,
+                            "processing",
+                            "Data Sale"
+                    );
+
                     prefs = getSharedPreferences("transaction_log", MODE_PRIVATE);
-                    String label = "Data-sale to " + phone + " - GH₵" + amount;
-                    TransactionHistoryActivity.saveTransaction(prefs, label);
-                    Log.d("USSD_SERVICE", "Transaction logged: " + label);
+                    TransactionHistoryActivity.saveTransaction(prefs, transaction);
 
                     // Reset shared preferences after cash-in flow is done
                     resetTransactionContext();
+                    updateStep(0);
+                }
+            }
+            else if (flowType.equals("buyafa")) {
+                if (text.contains("Bundle for Others") && step == 0) {
+                    performInput("2");
+                    updateStep(1);
+                } else if (text.contains("Enter mobile number") && step == 1) {
+                    performInput(phone);
+                    updateStep(2);
 
+                    // ✅ Log transaction after amount is entered
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy hh:mm a", Locale.getDefault());
+                    String timestamp = sdf.format(new Date());
+
+                    TransactionItem transaction = new TransactionItem(
+                            phone,
+                            "MTN",
+                            timestamp,
+                            "GH¢ " + amount,
+                            "processing",
+                            "AFA Airtime"
+                    );
+
+                    prefs = getSharedPreferences("transaction_log", MODE_PRIVATE);
+                    TransactionHistoryActivity.saveTransaction(prefs, transaction);
+
+                    // Reset shared preferences after cash-in flow is done
+                    resetTransactionContext();
                     updateStep(0);
                 }
             }
              else if (flowType.equals("checkbalance")) {
-                if (text.toLowerCase().contains("my wallet") && step == 0) {
+                Log.d("JERRYSEE", "handleUssdFlow() returned: " + text);
+//                if (text.contains("Pay To") && step == 0) {
+//                    performInput("1");
+//                    updateStep(1);
+                if (text.contains("My Wallet") && step == 0) {
+                    Log.d(TAG, "Detected text: " + text);
                     performInput("7");
                     updateStep(1);
                 } else if (text.toLowerCase().contains("check balance") && step == 1) {

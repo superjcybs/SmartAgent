@@ -1,4 +1,4 @@
-package com.example.smartagent;
+package com.superjcybs.smartagent;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.smartagent;
+package com.superjcybs.smartagent;
 
 public class GoogleSignInOptions {
     public static final Object DEFAULT_SIGN_IN = null;
